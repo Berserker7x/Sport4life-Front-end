@@ -1,0 +1,110 @@
+
+import React from 'react'
+import   { useState } from 'react'
+import showPwdImg from './Assets/images/show-password.svg'
+import hidePwdImg from './Assets/images/hide-password.svg'
+
+import logo from './Assets/images/sp4life2.png'
+
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link, 
+} from 'react-router-dom';
+ 
+
+
+export default function SignUp() {
+    const [pwd, setPwd] = useState('');
+const [isRevealPwd, setIsRevealPwd] = useState(false);
+  return (
+    <div>
+    <div className="flex">
+     <img    class="md:w-1/3 sm:w-40"  src={logo}  alt="logo" />
+     <div class="md:flex sm:block justify-center items-center">   
+      
+      <div class="grid mr-5 w-96 md:my-8  h-screen place-items-center">
+      <div class="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+<form class="space-y-6" action="#">
+<h5 class="text-xl font-medium text-gray-900 dark:text-white">Creat you Account SPORT4LIFE </h5>
+<div>
+    <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">First Name</label>
+    <input  name="firstname" id="firstname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required/>
+    <label for="secondename" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sconde Name</label>
+    <input   name="secondename" id="secondename" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"   required/>
+</div>
+<div>
+    <label for="organisation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sport Name</label>
+    <input  name="Organisationname" id="Organisationname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required/>
+    <label for="secondename" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+    <input   name="Workemail" id="Workemail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required/>
+</div>
+<div>
+    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
+    
+    <div Class="flex relative">
+        <input
+        name="pwd"
+        Class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+        placeholder="Enter Password"
+        type={isRevealPwd ? "text" : "password"}
+        value={pwd}
+        onChange={e => setPwd(e.target.value)}
+        />
+        <img Class="object-contain mr-2   mt-2 h-6 w-6 absolute right-0 top-0"
+        title={isRevealPwd ? "Hide password" : "Show password"}
+        src={isRevealPwd ? hidePwdImg : showPwdImg}
+        onClick={() => setIsRevealPwd(prevState => !prevState)}
+        />
+    </div>
+</div>
+<div class="flex items-start">
+    <div class="flex items-start">
+        <div class="flex items-center h-5">
+            <input id="remember" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required/>
+        </div>
+        <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Join Us and confirm that your accept all rules of the plateformess</label>
+    </div>
+   
+</div>
+<button type="submit" class="w-full text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-700 dark:hover:bg-red-700 dark:focus:ring-red-900">Sign Up</button>
+<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+Do you have already an Account
+<Link to="/"class="text-red-600 hover:underline dark:text-blue-500"> Login</Link>
+</div>
+</form>
+</div>
+</div>
+
+<div class="ml-5">
+<p class="font-bold md:text-lg sm:text-sm"> Create an account to access :</p>
+<br/>
+<div class="flex">
+<svg xmlns="http://www.w3.org/2000/svg" class="h-5  md:h-5  sm:h-5 w-5 " viewBox="0 0 20 20" fill="blue"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+<p class="font-semibold  ml-2  md:text-lg sm:text-sm">Join THE URBAIN COMUNITY </p>
+</div>
+<br/>
+<div class="flex">
+<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " viewBox="0 0 20 20" fill="blue"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+<p class="font-semibold ml-2  md:text-lg sm:text-sm"> STREET SPORT & STREET CULTURE<br/> FREE YOUR MIND WITH STREET  SPORT </p>
+</div>
+<br/>
+<div class="flex">
+<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="blue"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+<p class="font-semibold  ml-2  md:text-lg sm:text-sm"> ALL LEVELS ALL AGES <br/> JOIN SPORT FOR LIFE </p>
+</div>
+
+
+     </div>
+      </div>
+      
+  
+
+</div>
+
+
+</div>
+
+  )
+}
