@@ -7,6 +7,8 @@ import hidePwdImg from './Assets/images/hide-password.svg'
 import logo from './Assets/images/sp4life2.png'
 import cities from '../data/cities.js'
 import sport from '../data/sport.js'
+import axios from 'axios'
+import { useNavigate} from 'react-router-dom';
 import {
     BrowserRouter as Router,
     Routes,
@@ -17,8 +19,51 @@ import {
 
 
 export default function SignUp() {
+  const navigate = useNavigate();
     const [pwd, setPwd] = useState('');
-const [isRevealPwd, setIsRevealPwd] = useState(false);
+    const [error, seterror] = useState("");
+
+    const [isRevealPwd, setIsRevealPwd] = useState(false);
+    const [registerInfo, setregisterInfo] = useState({
+      email: "",
+      facebook:"",
+      instagram:"",
+      password: "",
+      sport:"",
+      tele:"",
+      username:"",
+      ville:"",
+      password:""
+      
+     });
+     const handleRegisrer = (e) => {
+      e.preventDefault();
+      
+      const data = {
+        "email": registerInfo.email,
+        "facebook":  registerInfo.facebook,
+        "instagram":  registerInfo.instagram,
+        "password":registerInfo.password,
+        "sport":registerInfo.sport,
+        "tele":registerInfo.tele,
+        "username":registerInfo.username,
+        "ville":registerInfo.ville,
+        "role":["ROLE_USER"]
+
+      }
+      console.log(data);
+      axios.post("http://localhost:8082/api/auth/signup", data)
+      .then((res) => {
+        console.log("success");
+        navigate("/");
+      })
+      .catch((err) => {
+        seterror(err.response.data.message);
+        // console.log(error);
+      })
+
+    };
+    
   return (
     <div>
     <div className="md:flex sm:block">
@@ -27,29 +72,32 @@ const [isRevealPwd, setIsRevealPwd] = useState(false);
       
       <div class="grid mr-5 w-96 md:my-8  h-screen place-items-center">
       <div class="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-<form class="space-y-6" action="#">
+<form  onSubmit={handleRegisrer}  class="space-y-6" action="#">
 <h5 class="text-xl font-medium text-gray-900 dark:text-white">Creat you Account SPORT4LIFE </h5>
+{error && (<p className="text-red-700 ml-9"> {error} </p>)}
 <div>
     <label for="Username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Username</label>
-    <input  name="Username" id="Username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required/>
+    <input onChange={(e) => setregisterInfo({ ...registerInfo, username: e.target.value })}  name="Username" id="Username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required/>
+   {/* Error handling  */}
+   
     <label for="Instagram" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Instagram</label>
-    <input   name="Instagram" id="Instagram" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"   required/>
+    <input   onChange={(e) => setregisterInfo({ ...registerInfo, instagram: e.target.value })}  name="Instagram" id="Instagram" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"   required/>
 </div>
 <div>
     <label for="Facebook" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Facebook</label>
-    <input  name="Facebook" id="Facebook" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required/>
+    <input onChange={(e) => setregisterInfo({ ...registerInfo, facebook: e.target.value })}   name="Facebook" id="Facebook" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required/>
     <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">number phone</label>
-      <input   name="number" id="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required/>
+      <input  onChange={(e) => setregisterInfo({ ...registerInfo, tele: e.target.value })}  name="number" id="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required/>
     {/* VILLE */}
     <div> 
         
     <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Choose Your City</label>
-     <select id="small" class="block p-2 mb-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+     <select  onChange={(e) => setregisterInfo({ ...registerInfo, ville: e.target.value })}   id="small" class="block p-2 mb-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
  
   
                      {cities.map((city) => {
                         return (
-                          <option value={city.ville}> {city.ville}</option>
+                          <option   value={city.ville}> {city.ville}</option>
                         );
                       })}
   
@@ -61,7 +109,7 @@ const [isRevealPwd, setIsRevealPwd] = useState(false);
     <div> 
         
         <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Choose Your Sport</label>
-         <select id="small" class="block p-2 mb-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+         <select onChange={(e) => setregisterInfo({ ...registerInfo, sport: e.target.value })}  id="small" class="block p-2 mb-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
      
       
                          {sport.map((sport) => {
@@ -75,19 +123,20 @@ const [isRevealPwd, setIsRevealPwd] = useState(false);
           </div>
           {/* FIN sport */}
       <label for="secondename" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
-      <input   name="Workemail" id="Workemail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required/>
+      <input onChange={(e) => setregisterInfo({ ...registerInfo, email: e.target.value })}   name="Workemail" id="Workemail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required/>
 </div>
 <div>
     <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
     
     <div Class="flex relative">
-        <input
-        name="pwd"
-        Class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-        placeholder="Enter Password"
-        type={isRevealPwd ? "text" : "password"}
-        value={pwd}
-        onChange={e => setPwd(e.target.value)}
+    <input 
+        onChange={(e) => setregisterInfo({...registerInfo, password: e.target.value })}
+        Class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+          name="pwd"
+          placeholder="Mot de passe "
+          type={isRevealPwd ? "text" : "password"}
+          class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-lg outline-none  text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+            
         />
         <img Class="object-contain mr-2   mt-2 h-6 w-6 absolute right-0 top-0"
         title={isRevealPwd ? "Hide password" : "Show password"}
