@@ -5,14 +5,15 @@ import showPwdImg from './Assets/images/show-password.svg'
 import hidePwdImg from './Assets/images/hide-password.svg'
 
 import logo from './Assets/images/sp4life2.png'
-
+import cities from '../data/cities.js'
+import sport from '../data/sport.js'
 import {
     BrowserRouter as Router,
     Routes,
     Route,
     Link, 
 } from 'react-router-dom';
- 
+
 
 
 export default function SignUp() {
@@ -20,8 +21,8 @@ export default function SignUp() {
 const [isRevealPwd, setIsRevealPwd] = useState(false);
   return (
     <div>
-    <div className="flex">
-     <img    class="md:w-1/3 sm:w-40"  src={logo}  alt="logo" />
+    <div className="md:flex sm:block">
+     <img    class="md:w-1/3 sm:w-1/2 object-contain"  src={logo}  alt="logo" />
      <div class="md:flex sm:block justify-center items-center">   
       
       <div class="grid mr-5 w-96 md:my-8  h-screen place-items-center">
@@ -29,16 +30,52 @@ const [isRevealPwd, setIsRevealPwd] = useState(false);
 <form class="space-y-6" action="#">
 <h5 class="text-xl font-medium text-gray-900 dark:text-white">Creat you Account SPORT4LIFE </h5>
 <div>
-    <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">First Name</label>
-    <input  name="firstname" id="firstname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required/>
-    <label for="secondename" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sconde Name</label>
-    <input   name="secondename" id="secondename" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"   required/>
+    <label for="Username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Username</label>
+    <input  name="Username" id="Username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required/>
+    <label for="Instagram" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Instagram</label>
+    <input   name="Instagram" id="Instagram" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"   required/>
 </div>
 <div>
-    <label for="organisation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sport Name</label>
-    <input  name="Organisationname" id="Organisationname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required/>
-    <label for="secondename" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
-    <input   name="Workemail" id="Workemail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required/>
+    <label for="Facebook" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Facebook</label>
+    <input  name="Facebook" id="Facebook" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required/>
+    <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">number phone</label>
+      <input   name="number" id="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required/>
+    {/* VILLE */}
+    <div> 
+        
+    <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Choose Your City</label>
+     <select id="small" class="block p-2 mb-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+ 
+  
+                     {cities.map((city) => {
+                        return (
+                          <option value={city.ville}> {city.ville}</option>
+                        );
+                      })}
+  
+      </select>
+    
+      </div>
+      {/* FIN VILLE */}
+        {/* sport */}
+    <div> 
+        
+        <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Choose Your Sport</label>
+         <select id="small" class="block p-2 mb-6 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+     
+      
+                         {sport.map((sport) => {
+                            return (
+                              <option value={sport.sporttype}> {sport.sporttype}</option>
+                            );
+                          })}
+      
+          </select>
+        
+          </div>
+          {/* FIN sport */}
+      <label for="secondename" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+      <input   name="Workemail" id="Workemail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required/>
 </div>
 <div>
     <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
