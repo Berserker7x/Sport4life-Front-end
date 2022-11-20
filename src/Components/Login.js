@@ -5,12 +5,16 @@ import showPwdImg from "./Assets/images/show-password.svg";
 import hidePwdImg from "./Assets/images/hide-password.svg";
 import Slogon from "./Slogon.tsx";
 import axios from "axios";
+import { useNavigate} from 'react-router-dom';
+
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 export default function Login() {
   const [pwd, setPwd] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
 
   const [loginInfo, setLoginInfo] = useState({
     username: null,
@@ -26,7 +30,8 @@ export default function Login() {
       .then((res) => {
         console.log(res.data);
         // localStorage.setItem("jwt", res.data.jwt);
-        // navigate("/Dashbord");
+        navigate("/Home");
+
       })
       .catch((err) => {
         console.log(err.response.data.message);
