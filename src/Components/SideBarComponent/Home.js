@@ -1,5 +1,6 @@
 import React from 'react'
 import SideBar from '../SideBar'
+import Post from './Post'
 
 export default function Home() {
     
@@ -15,7 +16,7 @@ export default function Home() {
             
           
               <h1 className="text-3xl  mb-7">Home</h1>
-              
+              <Post/>
                 
              
                
