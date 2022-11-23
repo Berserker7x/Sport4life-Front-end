@@ -1,7 +1,12 @@
-import React from 'react'
+import React ,{useState}from 'react'
 import sp4life2 from './Assets/images/sp4life2.png'
-import {Link} from 'react-router-dom';
+import Ask from './SideBarComponent/Ask'
+import {Link} from 'react-router-dom'
+
+
 export default function SideBar() {
+  const [showAsk, setshowAsk] = useState(false);
+
 
  
    return (
@@ -53,7 +58,7 @@ export default function SideBar() {
                 className="flex  rounded-md p-2 cursor-pointer  text-gray-500 hover:text-white  text-sm items-center gap-x-4" 
                 
               >
-                 <Link className="flex" to="/TokenList">
+                 <Link className="flex" to="/">
                 {/* <img src={Folder}  className="ml-1"/> */}
                 <span className="origin-left duration-200 ml-1     md:visible  sm:invisible">
                   Find Athletes 
@@ -65,12 +70,13 @@ export default function SideBar() {
                 className="flex ml-1 rounded-md p-2 cursor-pointer  text-gray-500 hover:text-white  text-sm items-center gap-x-4" 
                 
               >
-               <Link className="flex" to="/BankList">
+                <Link className="flex" to="/Ask">
                {/* <img src={Bank3}  className=" w-6"/> */}
-                 <span className="origin-left duration-200 ml-1  mt-2  md:visible sm:invisible">
+                 <button onClick ={() => setshowAsk(!showAsk)} className="origin-left duration-200 ml-1  mt-2  md:visible sm:invisible">
                     Ask Community 
-               </span>
+               </button>
                </Link>
+             
               </li>
               
                <li
@@ -129,6 +135,7 @@ export default function SideBar() {
  
              </div>
          </div>
+      
           
          </div>
              

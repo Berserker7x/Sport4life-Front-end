@@ -1,13 +1,15 @@
 import React from 'react'
 import SideBar from '../SideBar'
 import Post from './Post'
-
+import Ask from './Ask'
+import NavBar from './NavBar'
 export default function Home() {
     
     return (
       <>
       
       <SideBar/>
+      <NavBar/>
        
        
        
@@ -17,6 +19,8 @@ export default function Home() {
           
               <h1 className="text-3xl  mb-7">Home</h1>
               <Post/>
+              {/* <Ask/> */}
+              
                 
              
                
