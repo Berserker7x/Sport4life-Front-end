@@ -5,6 +5,8 @@ import {Route,Routes,BrowserRouter} from 'react-router-dom'
 import Signup from './Components/Signup'
 import Home from './Components/SideBarComponent/Home'
 import Ask from './Components/SideBarComponent/Ask'
+import FindAthlete from './Components/SideBarComponent/FindAthlete'
+
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +15,8 @@ function App() {
     <Route path="/Ask" element={<Ask/>} > Ask </Route>
     <Route path="/" element={<Login/>} > Login </Route>
     <Route path="/Home" element={<Home/>} >Home</Route>
+    <Route path="/FindAthlete" element={<FindAthlete/>} >FindAthlete</Route>
+
     </Routes>
     </BrowserRouter>
   );

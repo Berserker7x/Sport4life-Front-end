@@ -46,7 +46,7 @@ export default function SideBar() {
                 className="flex  rounded-md p-2 cursor-pointer  text-gray-500 hover:text-white  text-sm items-center gap-x-4" 
                 
               >
-                 <Link className="flex" to="/Application">
+                 <Link className="flex" to="/">
                 {/* <img src={Calendar} className="ml-1" /> */}
                 <span className="origin-left duration-200 ml-1   md:visible  sm:invisible">
                   My Questions
@@ -58,7 +58,7 @@ export default function SideBar() {
                 className="flex  rounded-md p-2 cursor-pointer  text-gray-500 hover:text-white  text-sm items-center gap-x-4" 
                 
               >
-                 <Link className="flex" to="/">
+                 <Link className="flex" to="/FindAthlete">
                 {/* <img src={Folder}  className="ml-1"/> */}
                 <span className="origin-left duration-200 ml-1     md:visible  sm:invisible">
                   Find Athletes 
@@ -92,19 +92,7 @@ export default function SideBar() {
                </Link>
              </li>
                  
-             {/* <li
-                
-                className="flex  rounded-md p-2 cursor-pointer  text-gray-500 hover:text-white  text-sm items-center gap-x-4" 
-                
-              >
-                 <Link className="flex" to="/Transaction">
-                <img src={transaction}  className="ml-1 w-6 "/>
-                <span className="origin-left duration-200 ml-1     md:visible  sm:invisible">
-                   Transaction
-                </span>
-                </Link>
-              </li> */}
-             
+       
          </ul> 
          <li
                 
