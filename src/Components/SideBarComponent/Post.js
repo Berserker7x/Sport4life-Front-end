@@ -1,12 +1,18 @@
 import React,{useState,useRef,useEffect} from 'react'
 import like_true from '../Assets/images/like_true.png'
 import like_false from '../Assets/images/like_false.png'
+import axios from 'axios'
 
 
 export default function Post() {
     const [Like, setLike] = useState(false)
     const [showComentform, setshowComentform] =useState(false)
     const [showAllcoment,setshowAllcoment]=useState(false)
+    let [myData,setmyData]= useState([{}]);
+    const [userCreat,setuserCreat]=useState({})
+
+    
+
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef);
     function useOutsideAlerter(ref) {
@@ -16,7 +22,7 @@ export default function Post() {
            */
           function handleClickOutside(event) {
             if (ref.current && !ref.current.contains(event.target)) {
-              console.log("You clicked outside of me!");
+            //  console.log("You clicked outside of me!");
               setshowAllcoment(false)
               
             }
@@ -29,19 +35,52 @@ export default function Post() {
           };
         }, [ref]);
       }
+      useEffect(()=>{
+
+  
+        const access_token= JSON.parse(localStorage.getItem('userdata')).accessToken
+         
+       
+        axios.get("http://localhost:8082/post/get", {
+         
+          headers: {
+        
+            'Authorization': `Bearer ${access_token}`
+          }
+        })
+        .then((res) => {
+          console.log(res.data);
+          setmyData(res.data[0])
+          //console.log("hhh",myData);
+          
+        
+         
+        })
+        .catch((error) => {
+          // console.error(error.response.data)
+        })
+      
+      
+      
+        
+      },[])
     
 
     
 
   return (
     <div class="w-full bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+
    
     <div class="px-5 pb-5">
+      <button className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-orange-400 dark:hover:bg-orange-600 dark:focus:ring-orange-800"> Athlete asking : {(myData.userCreatPost?.["username"])}</button>
     <div className="text-center">
-    <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Titre</h5>
+ 
+    <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Tile : {myData.title}</h5>
+    
     </div>
       <div>
-      <p className="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">QUESTION</p>
+      <p className="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">Content : {myData.question}</p>
       </div>
         <div class="flex items-center justify-between">
             <div className="flex">
@@ -56,7 +95,7 @@ export default function Post() {
             </button>
             <button onClick={()=>setshowAllcoment(true)} class="text-2xl ml-5 font-bold text-gray-900 dark:text-white">Coment</button>
             </div>
-            <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Categorie</a>
+            <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{(myData.userCreatPost?.["sport"])}</a>
         </div>
      </div>
   {showComentform ? (
@@ -91,13 +130,11 @@ export default function Post() {
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setshowAllcoment(false)}
                   >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
+                
                   </button>
                 </div>
                 {/*body*/}
-<div>
+              <div>
     
         <div class="p-12">
         <div className="flex">

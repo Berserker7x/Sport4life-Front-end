@@ -28,8 +28,8 @@ export default function Login() {
     axios
       .post("http://localhost:8082/api/auth/signin", loginInfo)
       .then((res) => {
-        console.log(res.data);
-        // localStorage.setItem("jwt", res.data.jwt);
+        
+        localStorage.setItem("userdata", JSON.stringify(res.data));
         navigate("/Home");
 
       })
