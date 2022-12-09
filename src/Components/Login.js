@@ -21,17 +21,16 @@ export default function Login() {
     password: null,
   });
 
-  const handleLogin = (e) => {
+  const  handleLogin = async(e) => {
     e.preventDefault();
     console.log(loginInfo);
 
-    axios
-      .post("http://localhost:8082/api/auth/signin", loginInfo)
-      .then((res) => {
+    await axios.post("http://localhost:8082/api/auth/signin", loginInfo).then((res) => {
         
         console.log(res.data);
+        // if (JSON.parse(localStorage.getItem('workItems')).length > 0)
         localStorage.setItem("userdata", JSON.stringify(res.data));
-        localStorage.setItem("instagram",JSON.stringify(res.data.instagram))
+        // localStorage.setItem("instagram",res.data.instagram)
         navigate("/Home");
 
       })
