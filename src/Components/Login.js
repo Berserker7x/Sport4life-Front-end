@@ -100,7 +100,7 @@ export default function Login() {
               <div class="  relative text-sm mt-10 font-medium text-gray-500 dark:text-gray-300">
                 Creat your Account?
                 <Link to="/SignUp">
-                  <button class="text-red-600 sm:mr-4 md:ml-1 hover:underline dark:text-red-600">
+                  <button className="text-red-600 sm:mr-4 md:ml-1 hover:underline dark:text-red-600">
                     Sign up
                   </button>
                 </Link>
