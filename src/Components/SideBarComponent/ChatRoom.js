@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
+import SideBar from '../SideBar'
 import logo from "../Assets/images/sp4life2.png";
 
 
@@ -120,7 +121,9 @@ const ChatRoom = () => {
         connect();
     }
     return (
+        // <div></div>
     <div className="container">
+        <SideBar/>
         {userData.connected?
         <div className="chat-box">
             <div className="member-list">
